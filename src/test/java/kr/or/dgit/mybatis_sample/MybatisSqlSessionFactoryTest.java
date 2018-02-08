@@ -23,7 +23,7 @@ public class MybatisSqlSessionFactoryTest {
 			factory = null;
 		}
 		@Test
-		public void test() {
+		public void testMybatisSqlSessionFactoryTest() {
 			Assert.assertNotNull(factory);
 		}
 }

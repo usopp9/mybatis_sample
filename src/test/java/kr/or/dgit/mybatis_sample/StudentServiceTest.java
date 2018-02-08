@@ -26,7 +26,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void test() {
+	public void testStudentServicefindStudentByNo() {
 		Student student = service.findStudentByNo(new Student(1));
 		Assert.assertNotNull(student);
 	}
