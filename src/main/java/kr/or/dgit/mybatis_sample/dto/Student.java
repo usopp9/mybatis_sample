@@ -8,12 +8,24 @@ public class Student {
 	private String email;
 	private PhoneNumber phone;
 	private Date dob;
+	
+	public Student() {
+		
+	}
+
+	public Student(int studId) {
+		super();
+		this.studId = studId;
+	}
+	
 	public int getStudId() {
 		return studId;
 	}
+	
 	public void setStudId(int studId) {
 		this.studId = studId;
 	}
+	
 	public String getName() {
 		return name;
 	}
