@@ -38,7 +38,7 @@
 	
 	<!-- update -->
 	<sql id="updateSql">
-		update students set name=#{name}, email=#{email},phone=#{email},dob=#{dob}
+		update students set name=#{name}, email=#{email},phone=#{phone},dob=#{dob}
 		where stud_id=#{studId}
 	</sql>
 	<update id="updateStudent">
