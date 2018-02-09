@@ -33,19 +33,6 @@ public class StudentService {
 		}
 	}
 
-	public Student findStudentByNoWithAPI(Student student) {
-		log.debug("findStudentByNoWithAPI()");
-		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectOne(namespace + "selectStudentByNoWithAPI", student);
-		}
-	}
-
-	public List<Student> findStudentByAllWithAPI() {
-		log.debug("findStudentByAllWithAPI()");
-		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectStudentByAllWithAPI");
-		}
-	}
 
 	public int createStudent(Student student) {
 		log.debug("createStudent()");
@@ -56,14 +43,5 @@ public class StudentService {
 			return res;
 		}
 
-	}
-
-	public int createStudentWithAPI(Student student) {
-		log.debug("createStudentWithAPI()");
-		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
-			int res = sqlSession.insert(namespace + "insertStudentWithAPI", student);
-			sqlSession.commit();
-			return res;
-		}
 	}
 }
