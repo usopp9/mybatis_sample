@@ -38,4 +38,34 @@ public class StudentService {
 			return res;
 		}
 	}
+	public int updateStudentWithAPI(Student student) {
+		log.debug("updateStudentWithAPI()");
+		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
+		try  {	
+			int res = sqlSession.update(namespace+"updateStudentWithAPI",student);
+			sqlSession.commit();
+			return res;
+		}catch(Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+			throw new RuntimeException(e.getCause());
+		}finally {
+			sqlSession.close();
+		}
+	}
+	public int deleteStudent(int id) {
+		log.debug("deleteStudent()");
+		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
+		try  {	
+			int res = sqlSession.delete(namespace+"deleteStudent",id);
+			sqlSession.commit();
+			return res;
+		}catch(Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+			throw new RuntimeException(e.getCause());
+		}finally {
+			sqlSession.close();
+		}
+	}
 }
