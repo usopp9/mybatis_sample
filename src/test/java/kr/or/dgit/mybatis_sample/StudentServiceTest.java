@@ -1,18 +1,20 @@
 package kr.or.dgit.mybatis_sample;
 
-import static org.junit.Assert.*;
-
-import java.security.Provider.Service;
+import java.util.List;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
-
+import org.junit.runners.MethodSorters;
 
 import kr.or.dgit.mybatis_sample.dto.Student;
 import kr.or.dgit.mybatis_sample.service.StudentService;
 
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentServiceTest {
 	private static StudentService service;
 	@BeforeClass
@@ -20,15 +22,22 @@ public class StudentServiceTest {
 		service = new StudentService();
 	}
 
-	@After
-	public void tearDown() throws Exception {
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 		service=null;
 	}
 
 	@Test
-	public void testStudentServicefindStudentByNo() {
+	public void test1FindStudentByNo() {
 		Student student = service.findStudentByNo(new Student(1));
 		Assert.assertNotNull(student);
 	}
-
+	@Test
+	public void test2FindStudentByAll() {
+		List<Student> listStd = service.findStudentByAll();
+		Assert.assertNotNull(listStd);
+		for(Student std: listStd) {
+			System.out.println(std);
+		}
+	}
 }
