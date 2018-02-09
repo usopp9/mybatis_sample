@@ -2,36 +2,68 @@ package kr.or.dgit.mybatis_sample.service;
 
 import java.util.List;
 
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.mybatis_sample.dao.StudentDao;
-import kr.or.dgit.mybatis_sample.dao.StudentDaoImpl;
 import kr.or.dgit.mybatis_sample.dto.Student;
 import kr.or.dgit.mybatis_sample.util.MybatisSqlSessionFactory;
 
+
+
+
 public class StudentService {
+	private static final Log log = LogFactory.getLog(StudentService.class);
+	private String namespace = "kr.or.dgit.mybatis_sample.dao.StudentDao.";
+
 	public Student findStudentByNo(Student student) {
-		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession();){
-			StudentDao studentDao = new StudentDaoImpl(sqlSession);
-			return studentDao.selectStudentByNo(student);			
-		}			
+		log.debug("findStudentByNo()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByNo(student);
+		}
 	}
+
 	public List<Student> findStudentByAll() {
-		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession();){
-			StudentDao studentDao = new StudentDaoImpl(sqlSession);
-			return studentDao.selectStudentByAll();		
-		}				
+		log.debug("findStudentByAll()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByAll();
+		}
 	}
+
 	public Student findStudentByNoWithAPI(Student student) {
-		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession();){
-			StudentDao studentDao = new StudentDaoImpl(sqlSession);
-			return studentDao.selectStudentByNoWithAPI(student);			
-		}			
+		log.debug("findStudentByNoWithAPI()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectStudentByNoWithAPI", student);
+		}
 	}
+
 	public List<Student> findStudentByAllWithAPI() {
-		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession();){
-			StudentDao studentDao = new StudentDaoImpl(sqlSession);
-			return studentDao.selectStudentByAllWithAPI();		
-		}				
+		log.debug("findStudentByAllWithAPI()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectStudentByAllWithAPI");
+		}
+	}
+
+	public int createStudent(Student student) {
+		log.debug("createStudent()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			int res = studentDao.insertStudent(student);
+			sqlSession.commit();
+			return res;
+		}
+
+	}
+
+	public int createStudentWithAPI(Student student) {
+		log.debug("createStudentWithAPI()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			int res = sqlSession.insert(namespace + "insertStudentWithAPI", student);
+			sqlSession.commit();
+			return res;
+		}
 	}
 }
