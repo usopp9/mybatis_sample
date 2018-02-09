@@ -22,4 +22,16 @@ public class StudentService {
 			return studentDao.selectStudentByAll();		
 		}				
 	}
+	public Student findStudentByNoWithAPI(Student student) {
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession();){
+			StudentDao studentDao = new StudentDaoImpl(sqlSession);
+			return studentDao.selectStudentByNoWithAPI(student);			
+		}			
+	}
+	public List<Student> findStudentByAllWithAPI() {
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession();){
+			StudentDao studentDao = new StudentDaoImpl(sqlSession);
+			return studentDao.selectStudentByAllWithAPI();		
+		}				
+	}
 }

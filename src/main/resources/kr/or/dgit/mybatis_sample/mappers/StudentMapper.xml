@@ -18,7 +18,14 @@
 		<!-- SELECT stud_id, name, email, phone FROM students where stud_id=#{studId}; -->
 	</select>
 	<select id="selectStudentByAll" resultType="Student">
-	<include refid="selectSql"></include>
+		<include refid="selectSql"></include>
 		<!-- SELECT stud_id, name, email, phone FROM students; -->
+	</select>
+	<select id="selectStudentByNoWithAPI"  parameterType="Student" resultType="Student">
+		<include refid="selectSql"></include>
+		<include refid="whereSql"></include>
+	</select>
+	<select id="selectStudentByAllWithAPI"  resultType="Student">
+		<include refid="selectSql"></include>
 	</select>
 </mapper>
