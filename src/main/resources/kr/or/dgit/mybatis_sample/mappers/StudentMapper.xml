@@ -35,7 +35,23 @@
 	<insert id="insertStudent" parameterType="Student">
 		<include refid="insertSql"/>
 	</insert>
-
+	
+	<!-- update -->
+	<sql id="updateSql">
+		update students set name=#{name}, email=#{email},phone=#{email},dob=#{dob}
+		where stud_id=#{studId}
+	</sql>
+	<update id="updateStudent">
+		<include refid="updateSql"/>
+	</update>
+	
+	<!-- delete -->
+	<sql id="deleteSql">
+		delete from students where stud_id=#{studId};
+	</sql>
+	<delete id="deleteStudent" parameterType="int">
+		<include refid="deleteSql"/>
+	</delete>
 </mapper>
 
 

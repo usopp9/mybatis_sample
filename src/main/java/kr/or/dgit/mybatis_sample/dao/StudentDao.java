@@ -9,8 +9,12 @@ public interface StudentDao {
 	Student selectStudentByNo(Student student);
 	List<Student> selectStudentByAll();
 
-	
-	
 	//insert
 	int insertStudent(Student student);
+	
+	//update
+	int updateStudent(Student student);
+	
+	//delete
+	int deleteStudent(int id);
 }
