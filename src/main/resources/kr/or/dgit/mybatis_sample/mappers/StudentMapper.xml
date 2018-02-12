@@ -70,6 +70,10 @@
 	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
 		<include refid="selectSql2"></include>
 	</select>
+	
+	<select id="findStudentByAllForHashMap" resultType="map">
+		<include refid="selectSql2"></include>
+	</select>
 </mapper>
 
 
