@@ -6,10 +6,9 @@ import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 
+import kr.or.dgit.mybatis_sample.dao.StudentDao;
 import kr.or.dgit.mybatis_sample.dto.Student;
 import kr.or.dgit.mybatis_sample.util.MybatisSqlSessionFactory;
-
-
 
 
 public class StudentService {
@@ -38,34 +37,45 @@ public class StudentService {
 			return res;
 		}
 	}
+
 	public int updateStudentWithAPI(Student student) {
 		log.debug("updateStudentWithAPI()");
 		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
-		try  {	
-			int res = sqlSession.update(namespace+"updateStudentWithAPI",student);
+		try {
+			int res = sqlSession.update(namespace + "updateStudentWithAPI", student);
 			sqlSession.commit();
 			return res;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			sqlSession.rollback();
 			e.printStackTrace();
 			throw new RuntimeException(e.getCause());
-		}finally {
+		} finally {
 			sqlSession.close();
 		}
 	}
+
 	public int deleteStudent(int id) {
 		log.debug("deleteStudent()");
 		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
-		try  {	
-			int res = sqlSession.delete(namespace+"deleteStudent",id);
+		try {
+			int res = sqlSession.delete(namespace + "deleteStudent", id);
 			sqlSession.commit();
 			return res;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			sqlSession.rollback();
 			e.printStackTrace();
 			throw new RuntimeException(e.getCause());
-		}finally {
+		} finally {
 			sqlSession.close();
+		}
+	}
+
+	public List<Student> selectStudentByAllWithAPIForResultMap() {
+		log.debug("selectStudentByAllForResultMap()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByAllWithAPIForResultMap();
+
 		}
 	}
 }
