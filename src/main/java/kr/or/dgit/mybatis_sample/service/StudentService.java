@@ -83,7 +83,13 @@ public class StudentService {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
 			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
 			return sqlSession.selectList(namespace + "selectStudentByAllWithAPIForMap");
-
+		}
+	}
+	public Student selectStudentByNoForResultMapExtendsWithAPI(Student student) {
+		log.debug("selectStudentByNoForResultMapExtendsWithAPI()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return sqlSession.selectOne(namespace + "selectStudentByNoForResultMapExtendsWithAPI", student);
 		}
 	}
 }
