@@ -97,4 +97,11 @@ public class StudentServiceTest {
 		Student extStd1 = service.findStudentByNoWithAPI(new Student(1));
         Assert.assertEquals(extStd.getStudId(), extStd1.getStudId());
 	}
+	@Test
+	public void test9SelectStudentByNoAssociationWithAPI() {
+		Student searchStd = new Student(1);
+		Student student = service.selectStudentByNoAssociationWithAPI(searchStd);
+		Assert.assertNotNull(student);
+		System.out.println(student);
+	}
 }
