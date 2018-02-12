@@ -95,4 +95,11 @@ public class StudentServiceTest {
 		
 		 Assert.assertEquals(extStd.getStudId(), extStd1.getStudId());
 	}
+	@Test
+	public void test8SelectStudentByNoAssociation() {
+		Student searchStd = new Student(1);
+		Student student = service.selectStudentByNoAssociation(searchStd);
+		Assert.assertNotNull(student);
+		System.out.println(student);
+	}
 }

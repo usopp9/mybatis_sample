@@ -98,4 +98,12 @@ public class StudentService {
 			return studentDao.selectStudentByNoForResultMapExtends(student);
 		}
 	}
+	
+	public Student selectStudentByNoAssociation(Student student) {
+		log.debug("selectStudentByNoAssociation()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByNoAssociation(student);
+		}
+	}
 }
