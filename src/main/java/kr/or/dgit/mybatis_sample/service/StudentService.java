@@ -3,8 +3,6 @@ package kr.or.dgit.mybatis_sample.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.management.RuntimeErrorException;
-
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -91,6 +89,13 @@ public class StudentService {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
 			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
 			return studentDao.findStudentByAllForHashMap();
+		}
+	}
+	public Student selectStudentByNoForResultMapExtends(Student student) {
+		log.debug("selectStudentByNoForResultMapExtends()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByNoForResultMapExtends(student);
 		}
 	}
 }
