@@ -69,6 +69,10 @@
 	<select id="selectStudentByAllWithAPIForResultMap" resultMap="StudentResult">
 		<include refid="selectSql2"></include>
 	</select>
+	
+	<select id="selectStudentByAllWithAPIForMap" resultType="map">
+		<include refid="selectSql2"></include>
+	</select>
 </mapper>
 
 
