@@ -77,4 +77,11 @@ public class StudentService {
 			sqlSession.close();
 		}
 	}
+	public List<Student> selectStudentByAllForResultMap(){
+		log.debug("selectStudentByAllForResultMap()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByAllForResultMap();
+		}
+	}
 }
