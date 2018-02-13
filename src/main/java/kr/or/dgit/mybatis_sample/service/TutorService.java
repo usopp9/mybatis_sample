@@ -15,7 +15,7 @@ public class TutorService {
 	public Tutor findTutorByNoWithAPI(Tutor tutor) {
 		log.debug("findTutorByNoWithAPI()");
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectOne(namespace + "selectTutorByTutorId", tutor);
+			return sqlSession.selectOne(namespace + "selectTutorByTutorIdWithAPI", tutor);
 		}
 	}
 }
