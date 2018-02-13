@@ -110,7 +110,7 @@ public class StudentServiceTest {
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(1990, 2,28);
 		
-		Student student = new Student(5, "홍길동4", "lee@test.co.kr", new PhoneNumber("010-1234-1234"), newDate.getTime());
+		Student student = new Student(3, "홍길동4", "lee@test.co.kr", new PhoneNumber("010-1234-1234"), newDate.getTime());
         student.setGender(Gender.MALE);
 		int res = service.createEnumStudentWithAPI(student);
         Assert.assertEquals(1, res);
