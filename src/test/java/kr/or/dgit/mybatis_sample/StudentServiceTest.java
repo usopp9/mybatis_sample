@@ -15,6 +15,7 @@ import org.junit.runners.MethodSorters;
 
 import kr.or.dgit.mybatis_sample.dto.PhoneNumber;
 import kr.or.dgit.mybatis_sample.dto.Student;
+import kr.or.dgit.mybatis_sample.dto.type.Gender;
 import kr.or.dgit.mybatis_sample.service.StudentService;
 
 
@@ -103,5 +104,16 @@ public class StudentServiceTest {
 		Student student = service.selectStudentByNoAssociationWithAPI(searchStd);
 		Assert.assertNotNull(student);
 		System.out.println(student);
+	}
+	@Test
+	public void testFCreateEnumStudentWithAPI() {
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(1990, 2,28);
+		
+		Student student = new Student(5, "홍길동4", "lee@test.co.kr", new PhoneNumber("010-1234-1234"), newDate.getTime());
+        student.setGender(Gender.MALE);
+		int res = service.createEnumStudentWithAPI(student);
+        Assert.assertEquals(1, res);
+        System.out.println(student);
 	}
 }

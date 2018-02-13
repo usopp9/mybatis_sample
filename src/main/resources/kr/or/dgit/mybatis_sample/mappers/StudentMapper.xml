@@ -34,6 +34,11 @@
 		<include refid="insertSql"/>
 	</insert>
 	
+	<!-- enum 타입다루기 -->
+	<insert id="insertEnumStudentWithAPI" parameterType="Student">
+		insert into students(stud_id, name, email, phone, dob,gender) 
+        values(#{studId}, #{name}, #{email}, #{phone}, #{dob},#{gender})
+	</insert>
 	<!-- update -->
 	<sql id="updateSql">
 		update students set name=#{name}, email=#{email},phone=#{phone},dob=#{dob}
@@ -104,6 +109,9 @@
 		<include refid="selectJoinAddressSql"></include>
 		<include refid="whereSql"></include>
 	</select>
+	
+
+	
 </mapper>
 
 
