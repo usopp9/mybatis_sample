@@ -10,7 +10,6 @@ import kr.or.dgit.mybatis_sample.util.MybatisSqlSessionFactory;
 
 public class TutorService {
 	private static final Log log = LogFactory.getLog(StudentService.class);
-	private String namespace = "kr.or.dgit.mybatis_sample.dao.TutorDao.";
 	
 	
 	public Tutor findTutorByTutorId(Tutor tutor) {

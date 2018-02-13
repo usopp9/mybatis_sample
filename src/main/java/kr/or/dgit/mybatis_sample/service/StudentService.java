@@ -16,7 +16,7 @@ import kr.or.dgit.mybatis_sample.util.MybatisSqlSessionFactory;
 
 public class StudentService {
 	private static final Log log = LogFactory.getLog(StudentService.class);
-	private String namespace = "kr.or.dgit.mybatis_sample.dao.StudentDao.";
+
 
 	public Student findStudentByNo(Student student) {
 		log.debug("findStudentByNo()");
