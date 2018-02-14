@@ -8,4 +8,6 @@
 		<result property="startDate" column="startDate"/>
 		<result property="endDate" column="endDate"/>
 	</resultMap>
+	
+	
 </mapper>
