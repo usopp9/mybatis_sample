@@ -2,6 +2,7 @@ package kr.or.dgit.mybatis_sample;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -106,7 +107,7 @@ public class StudentServiceTest {
 		System.out.println(student);
 	}
 	@Test
-	public void testFCreateEnumStudentWithAPI() {
+	public void testACreateEnumStudentWithAPI() {
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(1990, 2,28);
 		
@@ -115,5 +116,21 @@ public class StudentServiceTest {
 		int res = service.createEnumStudentWithAPI(student);
         Assert.assertEquals(1, res);
         System.out.println(student);
+	}
+	@Test
+	public void testBFindAllStudentByStudentWithAPI() {
+		Student std = new Student();
+		std.setName("Timothy");
+		std.setEmail("test@test.co.kr");
+		Student student = service.findAllStudentByStudentWithAPI(std);
+		Assert.assertNotNull(student);
+	}
+	@Test
+	public void testCFindAllStudentByMapWithAPI() {
+		Map<String,String> map = new HashMap<>();
+		map.put("name", "Timothy");
+		map.put("email", "test@test.co.kr");
+		Student student = service.findAllStudentByMapWithAPI(map);
+		Assert.assertNotNull(student);
 	}
 }

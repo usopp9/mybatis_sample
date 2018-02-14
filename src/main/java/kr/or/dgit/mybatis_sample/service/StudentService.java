@@ -106,4 +106,18 @@ public class StudentService {
 			return sqlSession.selectOne(namespace + "selectStudentByNoAssociationWithAPI", student);
 		}
 	}
+	public Student findAllStudentByStudentWithAPI(Student student) {
+		log.debug("findAllStudentByStudentWithAPI()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return sqlSession.selectOne(namespace + "selectAllStudentByStudentWithAPI", student);
+		}
+	}
+	public Student findAllStudentByMapWithAPI(Map<String,String> map) {
+		log.debug("findAllStudentByMapWithAPI()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return sqlSession.selectOne(namespace + "selectAllStudentByMapWithAPI", map);
+		}
+	}
 }

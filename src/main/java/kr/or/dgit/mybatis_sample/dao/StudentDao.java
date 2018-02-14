@@ -25,4 +25,8 @@ public interface StudentDao {
 	
 	//delete
 	int deleteStudentWithAPI(int id);
+	
+	//여러개의 파라미터
+	Student selectAllStudentByStudentWithAPI(Student student);
+	Student selectAllStudentByMapWithAPI(Map<String,String> map);
 }

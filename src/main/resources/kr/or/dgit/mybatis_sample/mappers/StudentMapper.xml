@@ -110,7 +110,34 @@
 		<include refid="whereSql"></include>
 	</select>
 	
-
+	<!-- 여러개의 파라미터 -->
+	<resultMap type="Student" id="StudentGenderResult" extends="StudentResult">
+		<result property="gender" column="gender" />
+	</resultMap>
+	<sql id="selectParameterSql">
+		select stud_id, name, email, phone, dob ,gender from students
+	</sql>
+	<sql id="whereNameEmailSql">
+		<where>
+			<if test="name != null">
+				name=#{name}
+			</if>
+			<if test="email != null">
+				and email=#{email}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAllStudentByStudentWithAPI" parameterType="Student"
+		resultMap="StudentGenderResult">
+		<include refid="selectParameterSql"></include>
+		<include refid="whereNameEmailSql"></include>
+	</select>
+	<select id="selectAllStudentByMapWithAPI" parameterType="map"
+		resultMap="StudentGenderResult">
+		<include refid="selectParameterSql"></include>
+		<include refid="whereNameEmailSql"></include>
+	</select>
 	
 </mapper>
 
