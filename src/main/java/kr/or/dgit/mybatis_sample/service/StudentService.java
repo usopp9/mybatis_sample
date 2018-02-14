@@ -1,10 +1,13 @@
 package kr.or.dgit.mybatis_sample.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
+import org.apache.ibatis.session.ResultContext;
+import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.mybatis_sample.dao.StudentDao;
@@ -118,6 +121,22 @@ public class StudentService {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
 			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
 			return sqlSession.selectOne(namespace + "selectAllStudentByMapWithAPI", map);
+		}
+	}
+	public Map<Integer, String> selectStudentForMapWithAPI() {
+		log.debug("selectStudentForMapWithAPI()");
+		Map<Integer, String> map = new HashMap<>();
+        ResultHandler<Student> resultHandler = new ResultHandler<Student>() {
+            @Override
+            public void handleResult(ResultContext<? extends Student> resultContext) {
+                Student student = resultContext.getResultObject();
+                map.put(student.getStudId(), student.getName());                
+            }
+        };
+
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			sqlSession.select(namespace + "selectStudentForMapWithAPI", resultHandler);
+			return map;
 		}
 	}
 }

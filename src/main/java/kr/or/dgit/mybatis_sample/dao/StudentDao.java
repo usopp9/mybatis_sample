@@ -29,4 +29,7 @@ public interface StudentDao {
 	//여러개의 파라미터
 	Student selectAllStudentByStudentWithAPI(Student student);
 	Student selectAllStudentByMapWithAPI(Map<String,String> map);
+	
+	// ResultSet 처리방식의 재정의
+    Map<Integer, String> selectStudentForMapWithAPI();
 }
