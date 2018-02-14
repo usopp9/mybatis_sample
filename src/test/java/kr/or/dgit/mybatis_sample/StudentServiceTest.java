@@ -136,4 +136,12 @@ public class StudentServiceTest {
 		Student student = service.findAllStudentByMap(map);
 		Assert.assertNotNull(student);
 	}
+	@Test
+	public void testDselectStudentForMap() {
+		Map<String, Object> map = service.selectStudentForMap(new Student(1));
+		Assert.assertNotNull(map);
+			for (Entry<String, Object> entry : map.entrySet()) {
+				System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
+			}
+	}
 }

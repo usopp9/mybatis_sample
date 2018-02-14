@@ -3,6 +3,8 @@ package kr.or.dgit.mybatis_sample.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.ResultHandler;
+
 import kr.or.dgit.mybatis_sample.dto.Student;
 
 public interface StudentDao {
@@ -30,4 +32,6 @@ public interface StudentDao {
 	Student selectAllStudentByParam(String name, String email);
 	Student selectAllStudentByStudent(Student student);
 	Student selectAllStudentByMap(Map<String, String> map);
+	 // ResultSet 처리방식의 재정의
+    Map<String, Object> selectStudentForMap(Student student);
 }
