@@ -9,7 +9,7 @@ import kr.or.dgit.mybatis_sample.dto.Tutor;
 import kr.or.dgit.mybatis_sample.util.MybatisSqlSessionFactory;
 
 public class TutorService {
-	private static final Log log = LogFactory.getLog(StudentService.class);
+	private static final Log log = LogFactory.getLog(TutorService.class);
 	
 	
 	public Tutor findTutorByTutorId(Tutor tutor) {

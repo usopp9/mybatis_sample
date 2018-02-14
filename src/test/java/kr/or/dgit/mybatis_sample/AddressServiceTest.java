@@ -1,8 +1,8 @@
 package kr.or.dgit.mybatis_sample;
 
-
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.junit.AfterClass;
@@ -18,6 +18,7 @@ import kr.or.dgit.mybatis_sample.service.AddressService;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AddressServiceTest {
 	private static AddressService service;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		service = new AddressService();
@@ -30,8 +31,18 @@ public class AddressServiceTest {
 
 	@Test
 	public void test1FindAddressByAll() {
-		RowBounds rowbounds = new RowBounds(0,3);
+		RowBounds rowbounds = new RowBounds(0, 3);
 		List<Address> lists = service.findAddressByAll(rowbounds);
+		Assert.assertNotNull(lists);
+	}
+
+	@Test
+	public void test2FindAddressLimitByAll() {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("offset", 3);
+		map.put("limit", 3);
+		List<Address> lists = service.selectAddressLimitByAll(map);
+		System.out.println(lists.size());
 		Assert.assertNotNull(lists);
 	}
 }
