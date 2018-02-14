@@ -116,4 +116,25 @@ public class StudentService {
 			return studentDao.selectStudentByNoAssociation(student);
 		}
 	}
+	public Student findAllStudentByParam(String name,String email) {
+		log.debug("selectStudentByNoAssociation()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectAllStudentByParam(name, email);
+		}
+	}
+	public Student findAllStudentByStudent(Student student) {
+		log.debug("selectStudentByNoAssociation()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectAllStudentByStudent(student);
+		}
+	}
+	public Student findAllStudentByMap(Map<String, String> map) {
+		log.debug("selectStudentByNoAssociation()");
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectAllStudentByMap(map);
+		}
+	}
 }

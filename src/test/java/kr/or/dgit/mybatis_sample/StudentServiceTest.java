@@ -3,6 +3,7 @@ package kr.or.dgit.mybatis_sample;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -113,5 +114,26 @@ public class StudentServiceTest {
         int res = service.createEnumStudent(student);
         Assert.assertEquals(1, res);
         System.out.println(student);
+	}
+	@Test
+	public void testAFindAllStudentByParam() {
+		Student student = service.findAllStudentByParam("Timothy", "test@test.co.kr");
+		Assert.assertNotNull(student);
+	}
+	@Test
+	public void testBFindAllStudentByStudent() {
+		Student std = new Student();
+		std.setName("Timothy");
+		std.setEmail("test@test.co.kr");
+		Student student = service.findAllStudentByStudent(std);
+		Assert.assertNotNull(student);
+	}
+	@Test
+	public void testCFindAllStudentByMap() {
+		Map<String,String> map = new HashMap<>();
+		map.put("name", "Timothy");
+		map.put("email", "test@test.co.kr");
+		Student student = service.findAllStudentByMap(map);
+		Assert.assertNotNull(student);
 	}
 }

@@ -46,7 +46,7 @@ public class UserPicServiceTest {
 	@Test
 	public void testBGetUserPic() {
 		UserPic findUserPic = new UserPic();
-		findUserPic.setId(1);
+		findUserPic.setId(15);
 		UserPic userPic = service.selectgetUserPic(findUserPic);
 		Assert.assertNotNull(userPic);
 	}
