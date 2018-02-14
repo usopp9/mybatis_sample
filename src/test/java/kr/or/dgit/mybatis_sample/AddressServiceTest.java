@@ -25,7 +25,6 @@ public class AddressServiceTest {
 	public static void tearDownAfterClass() throws Exception {
 		service = null;
 	}
-
 	@Test
 	public void test1FindAddressByAllWithAPI() {
 		RowBounds rowbounds = new RowBounds(0,3);
